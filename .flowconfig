@@ -1,0 +1,24 @@
+[ignore]
+<PROJECT_ROOT>/.git/.*
+.*coverage.*
+
+[include]
+
+[declarations]
+<PROJECT_ROOT>/node_modules
+
+[libs]
+
+[lints]
+
+[options]
+include_warnings=true
+esproposal.nullish_coalescing=enable
+esproposal.optional_chaining=enable
+esproposal.export_star_as=enable
+esproposal.class_static_fields=enable
+esproposal.class_instance_fields=enable
+
+module.name_mapper='^\([^\.].*\)$' -> '<PROJECT_ROOT>/src/\1'
+
+[strict]
