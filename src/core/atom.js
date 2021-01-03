@@ -1,6 +1,6 @@
 // @flow
 /* eslint-disable no-redeclare */
-import type { Getter, Setter, Atom, WritableAtom, WithInitialValue, PrimitiveAtom } from 'core/types';
+import type { Getter, Setter, Atom, WritableAtom, WithInitialValue, PrimitiveAtom } from '@core/types';
 
 let keyCount = 0;
 
