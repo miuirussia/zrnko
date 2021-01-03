@@ -9,11 +9,12 @@ test('adds 1 + 2 to equal 3', () => {
 test('create atom', () => {
   const firstAtom = atom(1);
 
-  const secondAtom = atom(async () => {
+  const secondAtom = atom(async (): Promise<any> => {
     const result = await fetch('http://jsonplaceholder.typicode.com/posts');
 
     return await result.json();
   });
 
   console.log(firstAtom);
+  console.log(secondAtom);
 })
