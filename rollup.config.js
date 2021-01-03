@@ -13,7 +13,7 @@ console.log(IMPORTEE_PATHS);
 
 const rootImport = options => ({
   resolveId: importee => {
-    if (IMPORTEE_PATHS.some(tag => importee.startsWith(`@${tag}`))) {
+    if (IMPORTEE_PATHS.some(tag => importee.startsWith(tag))) {
       const rootPath = `${options.root}/${importee}.js`;
       const absPath = path.resolve(__dirname, rootPath);
       return fs.existsSync(absPath) ? absPath : null;
