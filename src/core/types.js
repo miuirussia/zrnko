@@ -34,5 +34,5 @@ export type WithInitialValue<V> = {
 
 export type PrimitiveAtom<V> = WritableAtom<V, SetStateAction<V>>;
 
-export type AnyAtom = Atom<mixed> | AsyncAtom<mixed>;
-export type AnyWritableAtom = WritableAtom<mixed, mixed> | AsyncWritableAtom<mixed, mixed>;
+export type AnyAtom<V> = Atom<V> | AsyncAtom<V>;
+export type AnyWritableAtom<V, U> = WritableAtom<V, U> | AsyncWritableAtom<V, U>;
