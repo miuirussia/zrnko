@@ -35,7 +35,7 @@ declare export function atom<V, U>(
 ): WritableAtom<V, U> & WithInitialValue<V>;
 declare export function atom<V, U = void>(read: (get: Getter) => Promise<V>): AsyncAtom<V>;
 declare export function atom<V, U = void>(read: (get: Getter) => V): Atom<V>;
-declare export function atom<V, U = any>(read: (...props: Array<any>) => any): void;
+declare export function atom<V, U>(read: (...props: Array<any>) => any): void;
 declare export function atom<V, U = void>(initialValue: V): PrimitiveAtom<V> & WithInitialValue<V>;
 
 export function atom<V, U>(
