@@ -9,7 +9,7 @@ declare export function atom<V, U>(
   write: (get: Getter, set: Setter, update: U) => void | Promise<void>
 ): WritableAtom<V, U>;
 declare export function atom<V, U>(
-  read: Function,
+  read: (...props: Array<any>) => any,
   write: (get: Getter, set: Setter, update: U) => void | Promise<void>
 ): void;
 declare export function atom<V, U>(
@@ -17,7 +17,7 @@ declare export function atom<V, U>(
   write: (get: Getter, set: Setter, update: U) => void | Promise<void>
 ): WritableAtom<V, U> & WithInitialValue<V>;
 declare export function atom<V, U = void>(read: (get: Getter) => V | Promise<V>): Atom<V, U>;
-declare export function atom<V, U>(read: Function): void;
+declare export function atom<V, U = any>(read: (...props: Array<any>) => any): void;
 declare export function atom<V, U = void>(initialValue: V): PrimitiveAtom<V> & WithInitialValue<V>;
 
 export function atom<V, U>(
