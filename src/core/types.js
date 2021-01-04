@@ -1,5 +1,7 @@
 // @flow
 
+export type Optional<V> = V | void;
+
 export type SetStateAction<V> = V | ((prev: V) => V);
 export type Getter = <V>(atom: Atom<V>) => V;
 export type Setter = <V, U>(atom: WritableAtom<V, U>, update: U) => void;
@@ -13,19 +15,19 @@ export type AtomBase = {
 };
 
 export type Atom<V> = AtomBase & {
-  read: (get: Getter) => V,
+  read: ({| get: Getter |}) => V,
 };
 
 export type AsyncAtom<V> = AtomBase & {
-  read: (get: Getter) => Promise<V>,
+  read: ({| get: Getter |}) => Promise<V>,
 };
 
 export type WritableAtom<V, U> = Atom<V> & {
-  write: (get: Getter, set: Setter, update: U) => void,
+  write: ({| get: Getter, set: Setter, update: U |}) => void,
 };
 
 export type AsyncWritableAtom<V, U> = AsyncAtom<V> & {
-  write: (get: Getter, set: Setter, update: U) => Promise<void>,
+  write: ({| get: Getter, set: Setter, update: U |}) => Promise<void>,
 };
 
 export type WithInitialValue<V> = {

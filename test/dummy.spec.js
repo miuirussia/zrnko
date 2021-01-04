@@ -12,23 +12,30 @@ type Posts = Array<{| userId: number, id: number, title: string, body: string |}
 test('create atom', () => {
   const firstAtom = atom(1);
 
-  const secondAtom = atom((get: Getter): number => {
+  const secondAtom = atom(({ get }: {| get: Getter |}): number => {
     return get(firstAtom) + 1;
   });
 
-  const thirdAtom = atom(async (get: Getter): Promise<Posts> => {
-    const atomValue = get(firstAtom);
+  const thirdAtom = atom(async ({ get }: {| get: Getter |}): Promise<Posts> => {
+    const firstAtomValue = get(firstAtom);
+    const secondAtomValue = get(secondAtom);
 
-    p(atomValue);
+    p(firstAtomValue, secondAtomValue);
 
     const result = await fetch('http://jsonplaceholder.typicode.com/posts');
 
     return await result.json();
   });
 
+  const asyncAtom = atom(async ({ get }: {| get: Getter |}): Promise<Posts> => {
+    const asyncAtomValue = await get(thirdAtom);
+    return asyncAtomValue.filter(post => post.id === 0);
+  });
+
   console.log(firstAtom);
   console.log(secondAtom);
   console.log(thirdAtom);
+  console.log(asyncAtom);
 });
 
-const p = (v: number): string => String(v);
+const p = (v: number, v2: number): string => String(v) + String(v2);
